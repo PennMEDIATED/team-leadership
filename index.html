@@ -7,216 +7,202 @@
 <meta name="description" content="Meet the leadership, staff, Knight Fellows, and faculty advisors of the Penn Center on Media, Technology and Democracy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
+  /* Design tokens mirror the shared Penn MEDIATED system used in the
+     `about` and `home` repos (see home/README.md) — pull values from
+     there rather than introducing new ones if this page grows. */
   :root {
-    --navy:       #011F5B;
-    --navy-mid:   #1a3a7a;
-    --blue-card:  #eef2fb;
-    --blue-card-border: #d0daf2;
-    --gold:       #f2c100;
-    --gold-text:  #7d6300;
-    --gold-light: #fef9e0;
-    --white:      #ffffff;
-    --text:       #1a1a1a;
-    --muted:      #666666;
-    --label:      #707070;
-    --border:     #e0e0e0;
-    --link-blue:  #0055A4;
-    --max-width:  1280px;
-    --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-    --font-sans:  'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --space-025:   2px;
+    --space-050:   4px;
+    --space-075:   6px;
+    --space-100:   8px;
+    --space-150:  12px;
+    --space-200:  16px;
+    --space-250:  20px;
+    --space-300:  24px;
+    --space-400:  32px;
+    --space-500:  40px;
+    --space-600:  48px;
+    --space-800:  64px;
+    --space-1000: 80px;
+
+    --c-bg:        #ffffff;
+    --c-dark:      #0d0d0c;
+    --c-light-bg:  #f8f7f4;
+    --c-accent:    #5533ee;
+    --c-red:       #f03d1f;
+    --c-gray:      #888680;
+    --c-gray-dark: #54534f;
+    --c-muted:     #c8c6c0;
+    --c-white:     #ffffff;
+    --c-gradient:  linear-gradient(150deg, #5533ee 0%, #df3611 81%);
+    --c-border:    rgba(13,13,12,0.08);
+
+    --f-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --f-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
+    --f-mono:  'Courier New', Courier, monospace;
+
+    --max-w:  1440px;
+    --pad-x:  var(--space-1000);
   }
+  @media (max-width: 900px) {
+    :root { --pad-x: var(--space-400); }
+  }
+  @media (max-width: 480px) {
+    :root { --pad-x: var(--space-250); }
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
   body {
-    font-family: var(--font-sans);
-    color: var(--text);
-    background: var(--white);
+    font-family: var(--f-sans);
+    color: var(--c-dark);
+    background: var(--c-bg);
     line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  a { color: var(--navy); text-decoration: underline; }
-  a:hover { color: var(--gold); }
+  a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
   a:focus-visible {
-    outline: 2px solid var(--navy);
+    outline: 2px solid var(--c-red);
     outline-offset: 2px;
   }
 
   /* ─── Hero ─── */
   .hero {
-    background: #ffffff;
-    padding: 0 0 44px;
+    background: var(--c-white);
+    padding: 0 0 var(--space-600);
   }
   .hero-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: var(--pad-x);
   }
   .hero h1 {
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: var(--f-sans);
+    font-size: 11px;
+    font-weight: 600;
     line-height: 1.2;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #990000;
-    margin-bottom: 8px;
+    color: var(--c-red);
+    margin-bottom: var(--space-100);
     max-width: 640px;
   }
-  .hero-subhead {
-    font-family: var(--font-serif);
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--navy);
-    max-width: 960px;
-    margin-top: 36px;
-    padding-top: 28px;
-    border-top: 2px solid var(--blue-card-border);
-    margin-bottom: 16px;
-  }
-  .hero p {
-    font-family: var(--font-sans);
-    font-size: 1.175rem;
-    color: #444;
-    max-width: 960px;
-    line-height: 1.7;
-  }
-  .hero p + p { margin-top: 16px; }
 
-  section.block { margin-bottom: 32px; }
+  section.block { margin-bottom: var(--space-1000); }
   section.block:last-child { margin-bottom: 0; }
   section.block h2 {
-    font-family: var(--font-serif);
-    font-size: 1.9rem;
+    font-family: var(--f-serif);
+    font-size: 1.875rem;
     font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 16px;
-  }
-  section.block p.lede {
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 960px;
-    margin-bottom: 28px;
-    line-height: 1.7;
+    letter-spacing: -0.02em;
+    color: var(--c-dark);
+    margin-bottom: var(--space-600);
   }
   .panel {
-    background: var(--blue-card);
-    border: 1px solid var(--blue-card-border);
-    padding: 32px;
+    background: var(--c-light-bg);
+    border: 1px solid var(--c-border);
+    padding: var(--space-400);
   }
 
   /* ─── Person grid / cards (styled to match the site's .grid / .card system) ─── */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: var(--max-width);
+    gap: var(--space-250);
+    max-width: var(--max-w);
   }
   .person-card {
     position: relative;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--navy-mid);
-    padding: 26px 22px;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-dark);
+    padding: var(--space-300) var(--space-250);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 6px;
+    gap: var(--space-075);
     text-decoration: none;
     color: inherit;
     transition: box-shadow 0.15s ease, border-color 0.15s ease;
   }
   .person-card:hover {
-    box-shadow: 0 4px 16px rgba(1,31,91,0.12);
-    border-color: var(--blue-card-border);
+    box-shadow: 0 4px 16px rgba(13,13,12,0.12);
+    border-color: rgba(13,13,12,0.14);
   }
   .person-card:hover:not(.alumna) {
-    border-top-color: var(--gold);
+    border-top-color: var(--c-red);
   }
   .person-card.alumna {
-    background: #f7f7f7;
-    border-top-color: #9a9a9a;
+    border-top-color: var(--c-gray);
   }
   .person-card.alumna:hover {
-    box-shadow: 0 4px 16px rgba(125,99,0,0.15);
-    border-top-color: var(--blue-card-border);
+    box-shadow: 0 4px 16px rgba(84,83,79,0.14);
+    border-top-color: var(--c-gray-dark);
   }
   .person-card img {
     width: 176px;
     height: 176px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 12px;
-    background: var(--blue-card);
+    margin-bottom: var(--space-150);
+    background: var(--c-light-bg);
     filter: grayscale(100%);
     transition: filter 0.3s ease;
   }
   .person-card:hover img {
     filter: grayscale(0%);
   }
-  .person-photo-placeholder {
-    width: 176px;
-    height: 176px;
-    border-radius: 50%;
-    margin-bottom: 12px;
-    background: var(--blue-card);
-    color: var(--navy);
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .person-card h4 {
-    font-family: var(--font-serif);
+    font-family: var(--f-serif);
     font-weight: 700;
-    color: var(--navy);
+    color: var(--c-dark);
     font-size: 1.15rem;
     line-height: 1.3;
     margin: 0;
   }
   .person-card p.role {
-    font-family: var(--font-sans);
+    font-family: var(--f-sans);
     font-size: 0.88rem;
-    color: var(--muted);
+    font-weight: 300;
+    color: var(--c-gray-dark);
     line-height: 1.5;
-    margin: 4px 0 0;
+    margin: var(--space-050) 0 0;
   }
   .person-card .visit {
-    font-family: var(--font-sans);
+    font-family: var(--f-sans);
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--navy);
+    color: var(--c-red);
     text-decoration: none;
     margin-top: auto;
-    padding-top: 12px;
+    padding-top: var(--space-150);
+    transition: opacity 0.15s ease;
   }
-  .person-card .visit:hover { color: var(--gold); }
+  .person-card .visit:hover { opacity: 0.7; }
   .person-card .tag {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 2px 10px;
-    font-family: var(--font-sans);
-    font-size: 0.68rem;
+    top: var(--space-150);
+    left: var(--space-150);
+    padding: var(--space-025) var(--space-150);
+    font-family: var(--f-sans);
+    font-size: 9px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold-text);
-    background: var(--gold-light);
+    color: var(--c-gray-dark);
+    background: var(--c-light-bg);
   }
 
   @media (max-width: 640px) {
-    .hero { padding: 0 0 32px; }
-    .hero-inner { padding: 0 16px; }
-    .hero p { font-size: 1rem; }
-    .panel { padding: 20px; }
+    .hero { padding: 0 0 var(--space-400); }
+    .panel { padding: var(--space-250); }
   }
 </style>
 </head>
