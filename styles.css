@@ -170,7 +170,7 @@ a:focus-visible {
    ============================================================================= */
 .team-hero {
   padding-top: 20px;
-  padding-bottom: var(--space-800);
+  padding-bottom: var(--space-1000);
 }
 
 .team-hero__title {
@@ -189,7 +189,6 @@ a:focus-visible {
   font-weight: 300;
   line-height: 25.2px;
   color: var(--c-dark);
-  max-width: 860px;
 }
 
 /* =============================================================================
@@ -222,7 +221,7 @@ a:focus-visible {
    top, same figure/ground logic as home's Research/Faculty CTA blocks. */
 .team-section--gradient {
   background: var(--c-gradient);
-  padding-top: var(--space-800);
+  padding-top: var(--space-1000);
 }
 .team-section--gradient .team-section__title {
   color: var(--c-white);
