@@ -1,445 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Team - Penn MEDIATED</title>
-<meta name="description" content="Meet the leadership, staff, Knight Fellows, and faculty advisors of the Penn Center on Media, Technology and Democracy.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<style>
-  /* Design tokens mirror the shared Penn MEDIATED system used in the
-     `about` and `home` repos (see home/README.md) — pull values from
-     there rather than introducing new ones if this page grows. */
-  :root {
-    --space-025:   2px;
-    --space-050:   4px;
-    --space-075:   6px;
-    --space-100:   8px;
-    --space-150:  12px;
-    --space-200:  16px;
-    --space-250:  20px;
-    --space-300:  24px;
-    --space-400:  32px;
-    --space-500:  40px;
-    --space-600:  48px;
-    --space-800:  64px;
-    --space-1000: 80px;
-
-    --c-bg:        #ffffff;
-    --c-dark:      #0d0d0c;
-    --c-light-bg:  #f8f7f4;
-    --c-accent:    #5533ee;
-    --c-red:       #f03d1f;
-    --c-gray:      #888680;
-    --c-gray-dark: #54534f;
-    --c-muted:     #c8c6c0;
-    --c-white:     #ffffff;
-    --c-gradient:  linear-gradient(150deg, #5533ee 0%, #df3611 81%);
-    --c-border:    rgba(13,13,12,0.08);
-
-    --f-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-    --f-sans:  'DM Sans', system-ui, -apple-system, sans-serif;
-    --f-mono:  'Courier New', Courier, monospace;
-
-    --max-w:  1440px;
-    --pad-x:  var(--space-1000);
-  }
-  @media (max-width: 900px) {
-    :root { --pad-x: var(--space-400); }
-  }
-  @media (max-width: 480px) {
-    :root { --pad-x: var(--space-250); }
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; scroll-behavior: smooth; }
-  body {
-    font-family: var(--f-sans);
-    color: var(--c-dark);
-    background: var(--c-bg);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-  a:focus-visible {
-    outline: 2px solid var(--c-red);
-    outline-offset: 2px;
-  }
-
-  /* ─── Hero ─── */
-  .hero {
-    background: var(--c-white);
-    padding: 0 0 var(--space-600);
-  }
-  .hero-inner {
-    max-width: var(--max-w);
-    margin-inline: auto;
-    padding-inline: var(--pad-x);
-  }
-  .hero h1 {
-    font-family: var(--f-sans);
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--c-red);
-    margin-bottom: var(--space-100);
-    max-width: 640px;
-  }
-
-  section.block { margin-bottom: var(--space-1000); }
-  section.block:last-child { margin-bottom: 0; }
-  /* Heading treatment matches /about's purple headline color, plus a
-     brand-gradient underline (the same gradient used on every purple-to-red
-     surface across the site) so each section reads as its own block. */
-  section.block h2 {
-    font-family: var(--f-serif);
-    font-size: 1.875rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--c-accent);
-    padding-bottom: var(--space-150);
-    margin-bottom: var(--space-500);
-    border-bottom: 3px solid;
-    border-image: var(--c-gradient) 1;
-  }
-  .panel {
-    background: var(--c-light-bg);
-    border: 1px solid var(--c-border);
-    padding: var(--space-400);
-  }
-
-  /* ─── Person grid / cards (styled to match the site's .grid / .card system) ─── */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-250);
-    max-width: var(--max-w);
-  }
-  .person-card {
-    position: relative;
-    background: var(--c-white);
-    border: 1px solid var(--c-border);
-    border-top: 3px solid var(--c-accent);
-    padding: var(--space-300) var(--space-250);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-075);
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.15s ease, border-color 0.15s ease;
-  }
-  .person-card:hover {
-    box-shadow: 0 4px 16px rgba(13,13,12,0.12);
-    border-color: rgba(13,13,12,0.14);
-  }
-  .person-card:hover:not(.alumna) {
-    border-top-color: var(--c-red);
-  }
-  .person-card.alumna {
-    border-top-color: var(--c-gray);
-  }
-  .person-card.alumna:hover {
-    box-shadow: 0 4px 16px rgba(84,83,79,0.14);
-    border-top-color: var(--c-gray-dark);
-  }
-  .person-card img {
-    width: 176px;
-    height: 176px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: var(--space-150);
-    background: var(--c-light-bg);
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-  }
-  .person-card:hover img {
-    filter: grayscale(0%);
-  }
-  .person-card h4 {
-    font-family: var(--f-serif);
-    font-weight: 700;
-    color: var(--c-dark);
-    font-size: 1.15rem;
-    line-height: 1.3;
-    margin: 0;
-  }
-  .person-card p.role {
-    font-family: var(--f-sans);
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: var(--c-gray-dark);
-    line-height: 1.5;
-    margin: var(--space-050) 0 0;
-  }
-  .person-card .visit {
-    font-family: var(--f-sans);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--c-dark);
-    text-decoration: none;
-    margin-top: auto;
-    padding-top: var(--space-150);
-    transition: color 0.15s ease;
-  }
-  .person-card .visit:hover { color: var(--c-red); }
-  .person-card .tag {
-    position: absolute;
-    top: var(--space-150);
-    left: var(--space-150);
-    padding: var(--space-025) var(--space-150);
-    font-family: var(--f-sans);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--c-gray-dark);
-    background: var(--c-light-bg);
-  }
-
-  @media (max-width: 640px) {
-    .hero { padding: 0 0 var(--space-400); }
-    .panel { padding: var(--space-250); }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team | Penn MEDIATED</title>
+  <meta name="description" content="Meet the leadership, staff, Knight Fellows, and faculty advisors of the Penn Center on Media, Technology and Democracy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-inner">
-    <header>
-      <h1>Our Team</h1>
-    </header>
-    <main>
+  <!-- ── Hero ─────────────────────────────────────────────────────── -->
+  <section class="team-hero reveal" aria-labelledby="team-hero-heading">
+    <div class="team-hero__inner">
+      <div class="eyebrow">Our Team</div>
+      <h1 id="team-hero-heading" class="team-hero__title">Leadership &amp; Staff</h1>
+      <p class="team-hero__lede">Meet the leadership, staff, Knight Fellows, and faculty advisors of the Penn Center on Media, Technology and Democracy.</p>
+    </div>
+  </section>
 
-      <section class="block">
-        <h2>Leadership and Staff</h2>
-        <div class="panel">
-        <div class="grid">
-          <a class="person-card" href="https://duncanjwatts.com/" target="_blank" rel="noopener">
-            <img src="Photos/Watts color.jpeg" alt="Duncan Watts" style="object-position: top;">
-            <h4>Duncan Watts</h4>
-            <p class="role">Penn Integrates Knowledge University Professor; Co-Director, Penn Center on Media, Technology &amp; Democracy</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://www.law.upenn.edu/faculty/csyoo" target="_blank" rel="noopener">
-            <img src="Photos/Yoo color.jpg" alt="Christopher Yoo">
-            <h4>Christopher Yoo</h4>
-            <p class="role">Imasogie Professor in Law and Technology; Co-Director, Penn Center on Media, Technology &amp; Democracy</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://www.linkedin.com/in/alexcengler/" target="_blank" rel="noopener">
-            <img src="Photos/Engler color.jpg" alt="Alex Engler">
-            <h4>Alex Engler</h4>
-            <p class="role">Executive Director</p>
-            <span class="visit">Website →</span>
-          </a>
-          <div class="person-card">
-            <img src="Photos/Iyer color.jpg" alt="Prithvi Iyer">
-            <h4>Prithvi Iyer</h4>
-            <p class="role">Communications and Research Manager</p>
-          </div>
-          <div class="person-card">
-            <img src="Photos/Frisbie color.jpg" alt="Alexis Frisbie" style="object-position: center 15%;">
-            <h4>Alexis Frisbie</h4>
-            <p class="role">Engagement and Policy Manager</p>
-          </div>
+  <!-- ── Leadership and Staff ─────────────────────────────────────── -->
+  <section class="team-section reveal reveal--toggle" aria-labelledby="leadership-heading">
+    <div class="team-section__inner">
+      <h2 id="leadership-heading" class="team-section__title">Leadership and Staff</h2>
+      <div class="team-section__grid">
+        <a class="person-card" href="https://duncanjwatts.com/" target="_blank" rel="noopener">
+          <img src="Photos/Watts color.jpeg" alt="Duncan Watts" class="person-card__photo" style="object-position: top;">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Duncan Watts</h4>
+          <p class="person-card__role">Penn Integrates Knowledge University Professor; Co-Director, Penn Center on Media, Technology &amp; Democracy</p>
+        </a>
+        <a class="person-card" href="https://www.law.upenn.edu/faculty/csyoo" target="_blank" rel="noopener">
+          <img src="Photos/Yoo color.jpg" alt="Christopher Yoo" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Christopher Yoo</h4>
+          <p class="person-card__role">Imasogie Professor in Law and Technology; Co-Director, Penn Center on Media, Technology &amp; Democracy</p>
+        </a>
+        <a class="person-card" href="https://www.linkedin.com/in/alexcengler/" target="_blank" rel="noopener">
+          <img src="Photos/Engler color.jpg" alt="Alex Engler" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Alex Engler</h4>
+          <p class="person-card__role">Executive Director</p>
+        </a>
+        <div class="person-card">
+          <img src="Photos/Iyer color.jpg" alt="Prithvi Iyer" class="person-card__photo">
+          <h4 class="person-card__name">Prithvi Iyer</h4>
+          <p class="person-card__role">Communications and Research Manager</p>
         </div>
+        <div class="person-card">
+          <img src="Photos/Frisbie color.jpg" alt="Alexis Frisbie" class="person-card__photo" style="object-position: center 15%;">
+          <h4 class="person-card__name">Alexis Frisbie</h4>
+          <p class="person-card__role">Engagement and Policy Manager</p>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="block">
-        <h2>Knight Fellows</h2>
-        <div class="panel">
-        <div class="grid">
-          <a class="person-card" href="https://cyijing.com/" target="_blank" rel="noopener">
-            <img src="Photos/chen color.jpeg" alt="Yijing Chen">
-            <h4>Yijing Chen</h4>
-            <p class="role">Knight Post-doctoral Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://www.linkedin.com/in/nolansiegel/" target="_blank" rel="noopener">
-            <img src="Photos/Siegel color.jpeg" alt="Nolan Siegel">
-            <h4>Nolan Siegel</h4>
-            <p class="role">Knight PhD Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://epickens.github.io/" target="_blank" rel="noopener">
-            <img src="Photos/Pickens color square.jpg" alt="Elliot Pickens">
-            <h4>Elliot Pickens</h4>
-            <p class="role">Knight PhD Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://burakozturan.com/" target="_blank" rel="noopener">
-            <img src="Photos/Ozturan.png" alt="Burak Ozturan">
-            <h4>Burak Ozturan</h4>
-            <p class="role">Knight Post-doctoral Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://jacky-liang.com/index.html" target="_blank" rel="noopener">
-            <img src="Photos/Liang square.jpg" alt="Jackey Liang" style="filter: none;">
-            <h4>Jackey Liang</h4>
-            <p class="role">Knight PhD Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://thomasfchamberlain.com/index.html" target="_blank" rel="noopener">
-            <img src="Photos/Chamberlain square.jpg" alt="Thomas Chamberlain">
-            <h4>Thomas Chamberlain</h4>
-            <p class="role">Knight Post-doctoral Fellow</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card alumna" href="https://amirtohidi.github.io/" target="_blank" rel="noopener">
-            <img src="Photos/Tohidi color.jpg" alt="Amir Tohidi">
-            <h4>Amir Tohidi</h4>
-            <p class="role">Knight Post-doctoral Fellow</p>
-            <span class="visit">Website →</span>
-            <span class="tag">Alumnus</span>
-          </a>
-          <a class="person-card alumna" href="https://jenny-allen.com/" target="_blank" rel="noopener">
-            <img src="Photos/allen color.jpeg" alt="Jennifer Allen">
-            <h4>Jennifer Allen</h4>
-            <p class="role">Knight Post-doctoral Fellow</p>
-            <span class="visit">Website →</span>
-            <span class="tag">Alumna</span>
-          </a>
+  <!-- ── Knight Fellows ───────────────────────────────────────────── -->
+  <section class="team-section reveal reveal--toggle" aria-labelledby="fellows-heading">
+    <div class="team-section__inner">
+      <h2 id="fellows-heading" class="team-section__title">Knight Fellows</h2>
+      <div class="team-section__grid">
+        <a class="person-card" href="https://cyijing.com/" target="_blank" rel="noopener">
+          <img src="Photos/chen color.jpeg" alt="Yijing Chen" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Yijing Chen</h4>
+          <p class="person-card__role">Knight Post-doctoral Fellow</p>
+        </a>
+        <a class="person-card" href="https://www.linkedin.com/in/nolansiegel/" target="_blank" rel="noopener">
+          <img src="Photos/Siegel color.jpeg" alt="Nolan Siegel" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Nolan Siegel</h4>
+          <p class="person-card__role">Knight PhD Fellow</p>
+        </a>
+        <a class="person-card" href="https://epickens.github.io/" target="_blank" rel="noopener">
+          <img src="Photos/Pickens color square.jpg" alt="Elliot Pickens" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Elliot Pickens</h4>
+          <p class="person-card__role">Knight PhD Fellow</p>
+        </a>
+        <a class="person-card" href="https://burakozturan.com/" target="_blank" rel="noopener">
+          <img src="Photos/Ozturan.png" alt="Burak Ozturan" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Burak Ozturan</h4>
+          <p class="person-card__role">Knight Post-doctoral Fellow</p>
+        </a>
+        <a class="person-card" href="https://jacky-liang.com/index.html" target="_blank" rel="noopener">
+          <img src="Photos/Liang square.jpg" alt="Jackey Liang" class="person-card__photo" style="filter: none;">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Jackey Liang</h4>
+          <p class="person-card__role">Knight PhD Fellow</p>
+        </a>
+        <a class="person-card" href="https://thomasfchamberlain.com/index.html" target="_blank" rel="noopener">
+          <img src="Photos/Chamberlain square.jpg" alt="Thomas Chamberlain" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Thomas Chamberlain</h4>
+          <p class="person-card__role">Knight Post-doctoral Fellow</p>
+        </a>
+        <a class="person-card person-card--alumni" href="https://amirtohidi.github.io/" target="_blank" rel="noopener">
+          <span class="person-card__tag">Alumnus</span>
+          <img src="Photos/Tohidi color.jpg" alt="Amir Tohidi" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Amir Tohidi</h4>
+          <p class="person-card__role">Knight Post-doctoral Fellow</p>
+        </a>
+        <a class="person-card person-card--alumni" href="https://jenny-allen.com/" target="_blank" rel="noopener">
+          <span class="person-card__tag">Alumna</span>
+          <img src="Photos/allen color.jpeg" alt="Jennifer Allen" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Jennifer Allen</h4>
+          <p class="person-card__role">Knight Post-doctoral Fellow</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Faculty Advisors ─────────────────────────────────────────── -->
+  <section class="team-section reveal reveal--toggle" aria-labelledby="advisors-heading">
+    <div class="team-section__inner">
+      <h2 id="advisors-heading" class="team-section__title">Faculty Advisors</h2>
+      <div class="team-section__grid">
+        <a class="person-card" href="https://www.asc.upenn.edu/people/faculty/amy-gutmann-phd" target="_blank" rel="noopener">
+          <img src="Photos/gutmann color.jpeg" alt="Amy Gutmann" class="person-card__photo" style="object-position: top;">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Amy Gutmann</h4>
+          <p class="person-card__role">Christopher H. Browne Distinguished Professor of Political Science; Professor of Communication, Annenberg School for Communication; Penn President Emerita</p>
+        </a>
+        <a class="person-card" href="https://www.asc.upenn.edu/people/faculty/kathleen-hall-jamieson-phd" target="_blank" rel="noopener">
+          <img src="Photos/Jamieson color.jpeg" alt="Kathleen Hall Jamieson" class="person-card__photo" style="object-position: top;">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Kathleen Hall Jamieson</h4>
+          <p class="person-card__role">Faculty Advisor; Elizabeth Ware Packard Professor of Communication, Annenberg School for Communication</p>
+        </a>
+        <a class="person-card" href="https://metaxa.net/" target="_blank" rel="noopener">
+          <img src="Photos/Metaxa color.jpg" alt="Danaé Metaxa" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Danaé Metaxa</h4>
+          <p class="person-card__role">Faculty Advisor; Raj and Neera Singh Term Assistant Professor, Computer and Information Science</p>
+        </a>
+        <a class="person-card" href="https://sp2.upenn.edu/person/desmond-upton-patton/" target="_blank" rel="noopener">
+          <img src="Photos/patton color.jpeg" alt="Desmond Patton" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Desmond Patton</h4>
+          <p class="person-card__role">Faculty Advisor; Penn Integrates Knowledge University Professor, School of Social Policy &amp; Practice</p>
+        </a>
+        <a class="person-card" href="https://sandragonzalezbailon.net/" target="_blank" rel="noopener">
+          <img src="Photos/GonzalezBailon color.jpg" alt="Sandra González-Bailón" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Sandra González-Bailón</h4>
+          <p class="person-card__role">Faculty Advisor; Carolyn Marvin Professor of Communication and Sociology, Annenberg School for Communication</p>
+        </a>
+        <a class="person-card" href="https://www.ylelkes.com/" target="_blank" rel="noopener">
+          <img src="Photos/lelkes color.jpg" alt="Yphtach Lelkes" class="person-card__photo">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Yphtach Lelkes</h4>
+          <p class="person-card__role">Faculty Advisor; Associate Professor of Communication, Annenberg School for Communication</p>
+        </a>
+        <a class="person-card" href="https://web.sas.upenn.edu/danhop/" target="_blank" rel="noopener">
+          <img src="Photos/hopkins color.jpg" alt="Daniel J. Hopkins" class="person-card__photo" style="object-position: top;">
+          <span class="card-arrow" aria-hidden="true">&#8599;</span>
+          <h4 class="person-card__name">Daniel J. Hopkins</h4>
+          <p class="person-card__role">Faculty Advisor; Julie and Martin Franklin Presidential Professor of Political Science, School of Arts and Sciences</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Part Time Staff ──────────────────────────────────────────── -->
+  <section class="team-section reveal reveal--toggle" aria-labelledby="parttime-heading">
+    <div class="team-section__inner">
+      <h2 id="parttime-heading" class="team-section__title">Part Time Staff</h2>
+      <div class="team-section__grid">
+        <div class="person-card">
+          <img src="Photos/Herzog.jpeg" alt="Fiona Herzog" class="person-card__photo">
+          <h4 class="person-card__name">Fiona Herzog</h4>
+          <p class="person-card__role">Web Designer</p>
         </div>
+        <div class="person-card">
+          <img src="Photos/Zhou color.jpeg" alt="Helena Zhou" class="person-card__photo">
+          <h4 class="person-card__name">Helena Zhou</h4>
+          <p class="person-card__role">Research Analyst</p>
         </div>
-      </section>
-
-      <section class="block">
-        <h2>Faculty Advisors</h2>
-        <div class="panel">
-        <div class="grid">
-          <a class="person-card" href="https://www.asc.upenn.edu/people/faculty/amy-gutmann-phd" target="_blank" rel="noopener">
-            <img src="Photos/gutmann color.jpeg" alt="Amy Gutmann" style="object-position: top;">
-            <h4>Amy Gutmann</h4>
-            <p class="role">Christopher H. Browne Distinguished Professor of Political Science; Professor of Communication, Annenberg School for Communication; Penn President Emerita</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://www.asc.upenn.edu/people/faculty/kathleen-hall-jamieson-phd" target="_blank" rel="noopener">
-            <img src="Photos/Jamieson color.jpeg" alt="Kathleen Hall Jamieson" style="object-position: top;">
-            <h4>Kathleen Hall Jamieson</h4>
-            <p class="role">Faculty Advisor; Elizabeth Ware Packard Professor of Communication, Annenberg School for Communication</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://metaxa.net/" target="_blank" rel="noopener">
-            <img src="Photos/Metaxa color.jpg" alt="Danaé Metaxa">
-            <h4>Danaé Metaxa</h4>
-            <p class="role">Faculty Advisor; Raj and Neera Singh Term Assistant Professor, Computer and Information Science</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://sp2.upenn.edu/person/desmond-upton-patton/" target="_blank" rel="noopener">
-            <img src="Photos/patton color.jpeg" alt="Desmond Patton">
-            <h4>Desmond Patton</h4>
-            <p class="role">Faculty Advisor; Penn Integrates Knowledge University Professor, School of Social Policy &amp; Practice</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://sandragonzalezbailon.net/" target="_blank" rel="noopener">
-            <img src="Photos/GonzalezBailon color.jpg" alt="Sandra González-Bailón">
-            <h4>Sandra González-Bailón</h4>
-            <p class="role">Faculty Advisor; Carolyn Marvin Professor of Communication and Sociology, Annenberg School for Communication</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://www.ylelkes.com/" target="_blank" rel="noopener">
-            <img src="Photos/lelkes color.jpg" alt="Yphtach Lelkes">
-            <h4>Yphtach Lelkes</h4>
-            <p class="role">Faculty Advisor; Associate Professor of Communication, Annenberg School for Communication</p>
-            <span class="visit">Website →</span>
-          </a>
-          <a class="person-card" href="https://web.sas.upenn.edu/danhop/" target="_blank" rel="noopener">
-            <img src="Photos/hopkins color.jpg" alt="Daniel J. Hopkins" style="object-position: top;">
-            <h4>Daniel J. Hopkins</h4>
-            <p class="role">Faculty Advisor; Julie and Martin Franklin Presidential Professor of Political Science, School of Arts and Sciences</p>
-            <span class="visit">Website →</span>
-          </a>
+        <div class="person-card">
+          <img src="Photos/Gupta color.jpeg" alt="Arzoo Gupta" class="person-card__photo">
+          <h4 class="person-card__name">Arzoo Gupta</h4>
+          <p class="person-card__role">Research Analyst</p>
         </div>
+        <div class="person-card">
+          <img src="Photos/Kumanduri.jpg" alt="Tarun Kumanduri" class="person-card__photo" style="object-position: top;">
+          <h4 class="person-card__name">Tarun Kumanduri</h4>
+          <p class="person-card__role">AI Auditing Engineer</p>
         </div>
-      </section>
-
-      <section class="block">
-        <h2>Part Time Staff</h2>
-        <div class="panel">
-        <div class="grid">
-          <div class="person-card">
-            <img src="Photos/Herzog.jpeg" alt="Fiona Herzog">
-            <h4>Fiona Herzog</h4>
-            <p class="role">Web Designer</p>
-          </div>
-          <div class="person-card">
-            <img src="Photos/Zhou color.jpeg" alt="Helena Zhou">
-            <h4>Helena Zhou</h4>
-            <p class="role">Research Analyst</p>
-          </div>
-          <div class="person-card">
-            <img src="Photos/Gupta color.jpeg" alt="Arzoo Gupta">
-            <h4>Arzoo Gupta</h4>
-            <p class="role">Research Analyst</p>
-          </div>
-          <div class="person-card">
-            <img src="Photos/Kumanduri.jpg" alt="Tarun Kumanduri" style="object-position: top;">
-            <h4>Tarun Kumanduri</h4>
-            <p class="role">AI Auditing Engineer</p>
-          </div>
-          <div class="person-card alumna">
-            <img src="Photos/Feng color.jpeg" alt="Victoria Feng">
-            <h4>Victoria Feng</h4>
-            <p class="role">Research Analyst</p>
-            <span class="tag">Alumna</span>
-          </div>
+        <div class="person-card person-card--alumni">
+          <span class="person-card__tag">Alumna</span>
+          <img src="Photos/Feng color.jpeg" alt="Victoria Feng" class="person-card__photo">
+          <h4 class="person-card__name">Victoria Feng</h4>
+          <p class="person-card__role">Research Analyst</p>
         </div>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-    </main>
-  </div>
-</div>
+  <script>
+    // Progressive enhancement: only hide .reveal sections (via the
+    // .js-reveal-ready CSS rule) once we know this script can actually
+    // run — so a page with JS blocked or failing never gets stuck with
+    // permanently invisible content; it just renders normally instead.
+    // Same pattern as about/index.html.
+    document.documentElement.classList.add('js-reveal-ready');
 
-<script>
-  // Reports this page's real height to a parent window embedding it via
-  // <iframe>, so the parent can auto-resize the iframe to fit — no fixed
-  // height guessing needed on the WordPress side.
-  (function () {
-    if (window.self === window.top) return; // not embedded, nothing to do
-
-    function postHeight() {
-      var height = Math.max(
-        document.documentElement.scrollHeight,
-        document.body.scrollHeight
-      );
-      window.parent.postMessage(
-        { type: 'partners-page-resize', height: height },
-        '*'
-      );
-    }
-
-    window.addEventListener('load', postHeight);
-    window.addEventListener('resize', postHeight);
-
-    // On a first (uncached) visit, web fonts can finish loading and swap in
-    // *after* the load event fires, reflowing text and changing the page's
-    // real height. Re-report the height once fonts are fully ready so the
-    // iframe doesn't end up sized too short (and scrollable) on first load.
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(postHeight);
-    }
-
-    if (window.ResizeObserver) {
-      new ResizeObserver(postHeight).observe(document.body);
+    // One-shot fade-in for the hero: fades in the first time it scrolls
+    // into view and then stays visible. The four grid sections are marked
+    // .reveal--toggle instead (below), so they keep re-fading as you
+    // scroll past them in either direction — same split as about/index.html.
+    var oneShotEls = document.querySelectorAll('.reveal:not(.reveal--toggle)');
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      oneShotEls.forEach(function (el) { revealObserver.observe(el); });
     } else {
-      // Fallback for older browsers: poll briefly after load
-      setInterval(postHeight, 500);
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
     }
-  })();
-</script>
+
+    // .reveal--toggle sections (each team-section) keep toggling both ways
+    // — the section and its staggered person-card tiles fade back out when
+    // scrolled past going up, not just a one-time reveal.
+    var toggleEls = document.querySelectorAll('.reveal--toggle');
+    if ('IntersectionObserver' in window) {
+      var toggleObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      toggleEls.forEach(function (el) { toggleObserver.observe(el); });
+    } else {
+      toggleEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  </script>
 
 </body>
 </html>
