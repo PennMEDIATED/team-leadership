@@ -199,6 +199,7 @@ a:focus-visible {
    headings on a plain (non-gradient) page.
    ============================================================================= */
 .team-section {
+  padding-top: var(--space-1000);
   padding-bottom: var(--space-1000);
 }
 .team-section:last-child {
@@ -226,7 +227,6 @@ a:focus-visible {
    top, same figure/ground logic as home's Research/Faculty CTA blocks. */
 .team-section--gradient {
   background: var(--c-gradient);
-  padding-top: var(--space-1000);
 }
 .team-section--gradient .team-section__title {
   color: var(--c-white);
@@ -238,7 +238,6 @@ a:focus-visible {
    colored sections read as siblings, not duplicates. Cards stay white. */
 .team-section--purple {
   background: var(--c-accent);
-  padding-top: var(--space-1000);
 }
 .team-section--purple .team-section__title {
   color: var(--c-white);
