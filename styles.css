@@ -217,7 +217,7 @@ a:focus-visible {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.15;
-  color: var(--c-dark);
+  color: var(--c-red);
   margin-bottom: var(--space-600);
 }
 
