@@ -259,9 +259,8 @@ a:focus-visible {
 }
 
 .person-card__photo {
-  width: 176px;
-  height: 176px;
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   margin-bottom: var(--space-150);
   background: var(--c-light-bg);
