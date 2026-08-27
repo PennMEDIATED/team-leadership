@@ -229,6 +229,19 @@ a:focus-visible {
   border-bottom-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Faculty Advisors gets a solid brand-purple backdrop — same treatment as
+   about's Partners section (background: var(--c-accent)), distinct from
+   the two-tone --c-gradient used on Core Leadership & Team so the two
+   colored sections read as siblings, not duplicates. Cards stay white. */
+.team-section--purple {
+  background: var(--c-accent);
+  padding-top: var(--space-1000);
+}
+.team-section--purple .team-section__title {
+  color: var(--c-white);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
 /* Grid never just shrinks its columns as the viewport narrows — auto-fill +
    minmax reflows to fewer columns at natural breakpoints instead, same
    reasoning as about's fixed-column grids with explicit breakpoints. */
