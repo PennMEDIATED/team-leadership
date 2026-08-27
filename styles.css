@@ -216,6 +216,19 @@ a:focus-visible {
   border-bottom: 1px solid rgba(13, 13, 12, 0.12);
 }
 
+/* Core Leadership & Team gets a full-bleed brand-gradient backdrop (the
+   same purple-to-red gradient used across the shared system) so it reads
+   as the page's lead section — cards stay plain white tiles floating on
+   top, same figure/ground logic as home's Research/Faculty CTA blocks. */
+.team-section--gradient {
+  background: var(--c-gradient);
+  padding-top: var(--space-800);
+}
+.team-section--gradient .team-section__title {
+  color: var(--c-white);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
 /* Grid never just shrinks its columns as the viewport narrows — auto-fill +
    minmax reflows to fewer columns at natural breakpoints instead, same
    reasoning as about's fixed-column grids with explicit breakpoints. */
@@ -225,9 +238,9 @@ a:focus-visible {
   gap: var(--space-250);
 }
 
-/* Card shape: white tile, static accent top-border (a fixed identity mark,
-   not a hover state), lifting with depth on hover — same hover treatment as
-   about's logo tiles (box-shadow + translateY), never a border-color swap. */
+/* Card shape: plain white tile, lifting with depth on hover — same hover
+   treatment as about's logo tiles (box-shadow + translateY), no accent
+   top-border or border-color swap. */
 .person-card {
   position: relative;
   display: flex;
@@ -237,16 +250,12 @@ a:focus-visible {
   gap: var(--space-075);
   background: var(--c-white);
   border: 1px solid rgba(13, 13, 12, 0.08);
-  border-top: 3px solid var(--c-accent);
   padding: var(--space-300) var(--space-250);
   transition: box-shadow 0.15s, transform 0.15s;
 }
 .person-card:hover {
   box-shadow: 0 12px 24px rgba(13, 13, 12, 0.16);
   transform: translateY(-4px);
-}
-.person-card--alumni {
-  border-top-color: var(--c-gray);
 }
 
 .person-card__photo {
