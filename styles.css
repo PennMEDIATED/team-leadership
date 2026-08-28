@@ -140,15 +140,30 @@ a:focus-visible {
    about/styles.css: the opacity/transform rule only applies once the page's
    own script confirms it can run (js-reveal-ready on <html>), so a page with
    JS disabled or blocked never gets stuck with invisible content.
+
+   Uses the standalone `translate` property (not `transform`) for the
+   entrance slide, on purpose: .person-card's hover lift uses `transform:
+   translateY(-4px)` with its own fast 0.15s transition (see the .person-card
+   rule below), and `transform` was also being used here for the entrance —
+   since a `transition` shorthand replaces the whole list per property, the
+   more specific reveal rule was silently overriding transform's transition
+   to this reveal's slower duration even after the reveal had long finished,
+   making hover lifts feel sluggish instead of crisp. `translate` and
+   `transform` are independent, separately-transitionable properties, so
+   splitting them here removes that conflict entirely. Also switched off the
+   generic `ease` curve to a smoother ease-out (cubic-bezier), and dropped
+   the added `scale()` and reduced the travel distance — the combination of
+   a long 56px slide, a scale change, and a slow linear-ish ease was reading
+   as heavy/sluggish rather than smooth.
    ============================================================================= */
 .js-reveal-ready .reveal {
   opacity: 0;
-  transform: translateY(56px) scale(0.97);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  translate: 0 24px;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), translate 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .js-reveal-ready .reveal.is-visible {
   opacity: 1;
-  transform: none;
+  translate: none;
 }
 
 /* Person-card tiles get their own staggered reveal, cued off their parent
@@ -156,12 +171,12 @@ a:focus-visible {
    center-block / partner-card stagger. */
 .js-reveal-ready .person-card {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  translate: 0 20px;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), translate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible .person-card {
   opacity: 1;
-  transform: none;
+  translate: none;
 }
 .person-card:nth-child(1) { transition-delay: 0.05s; }
 .person-card:nth-child(2) { transition-delay: 0.11s; }
