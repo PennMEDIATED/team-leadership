@@ -327,6 +327,22 @@ a:focus-visible {
   transform: translateY(-4px);
 }
 
+/* Knight Fellows and Part Time Staff sit on plain white backgrounds, so
+   their cards invert the figure/ground relationship used on the colored
+   sections — red-orange tiles on white, rather than white tiles on color.
+   Name goes white, role a translucent white to keep the same secondary-
+   text hierarchy it has elsewhere. */
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card {
+  background: var(--c-red);
+  border-color: transparent;
+}
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card__name {
+  color: var(--c-white);
+}
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card__role {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .person-card__photo {
   width: 208px;
   height: 208px;
