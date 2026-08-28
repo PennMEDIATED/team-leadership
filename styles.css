@@ -244,7 +244,7 @@ a:focus-visible {
   margin-bottom: var(--space-300);
 }
 
-/* Core Leadership & Team gets a full-bleed brand-gradient backdrop (the
+/* Core Team gets a full-bleed brand-gradient backdrop (the
    same purple-to-red gradient used across the shared system) so it reads
    as the page's lead section — cards stay plain white tiles floating on
    top, same figure/ground logic as home's Research/Faculty CTA blocks. */
@@ -258,7 +258,7 @@ a:focus-visible {
 
 /* Faculty Advisors gets a solid brand-purple backdrop — same treatment as
    about's Partners section (background: var(--c-accent)), distinct from
-   the two-tone --c-gradient used on Core Leadership & Team so the two
+   the two-tone --c-gradient used on Core Team so the two
    colored sections read as siblings, not duplicates. Cards stay white. */
 .team-section--purple {
   background: var(--c-accent);
