@@ -127,6 +127,45 @@ a:focus-visible {
 }
 
 /* =============================================================================
+   Scroll-hint arrow — copied from about/styles.css. Sits in the plain
+   white gap between the hero and the first colored section, inviting the
+   user to keep scrolling. Fades out once that section is in view, via
+   .scroll-hint--hidden (toggled by its own IntersectionObserver).
+   ============================================================================= */
+.scroll-hint-wrap {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-300);
+  background: var(--c-white);
+}
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(13, 13, 12, 0.15);
+  color: var(--c-dark);
+  font-size: 16px;
+  animation: scroll-hint-bounce 2.2s ease-in-out infinite;
+  transition: border-color 0.15s, color 0.15s, opacity 0.4s ease;
+}
+.scroll-hint:hover {
+  border-color: var(--c-red);
+  color: var(--c-red);
+  animation-play-state: paused;
+}
+.scroll-hint--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes scroll-hint-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+/* =============================================================================
    Scroll-triggered reveal — same progressive-enhancement pattern as
    about/styles.css: the opacity/transform rule only applies once the page's
    own script confirms it can run (js-reveal-ready on <html>), so a page with
@@ -218,7 +257,21 @@ a:focus-visible {
   letter-spacing: -0.02em;
   line-height: 1.15;
   color: var(--c-red);
-  margin-bottom: var(--space-600);
+  margin-bottom: var(--space-300);
+}
+
+/* Lede paragraph under each section heading — about's actual heading+lede
+   pattern (.partners__title -> .partners__lede, .related-centers__title ->
+   .related-centers__lede), both at the documented flat 24px gap, rather
+   than jumping straight from heading to grid. Full padded width, no
+   max-width of its own, per about/README.md's body-copy rule. */
+.team-section__lede {
+  font-family: var(--f-sans);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25.2px;
+  color: var(--c-dark);
+  margin-bottom: var(--space-300);
 }
 
 /* Core Leadership & Team gets a full-bleed brand-gradient backdrop (the
@@ -228,7 +281,8 @@ a:focus-visible {
 .team-section--gradient {
   background: var(--c-gradient);
 }
-.team-section--gradient .team-section__title {
+.team-section--gradient .team-section__title,
+.team-section--gradient .team-section__lede {
   color: var(--c-white);
 }
 
@@ -239,7 +293,8 @@ a:focus-visible {
 .team-section--purple {
   background: var(--c-accent);
 }
-.team-section--purple .team-section__title {
+.team-section--purple .team-section__title,
+.team-section--purple .team-section__lede {
   color: var(--c-white);
 }
 
@@ -273,8 +328,8 @@ a:focus-visible {
 }
 
 .person-card__photo {
-  width: 176px;
-  height: 176px;
+  width: 208px;
+  height: 208px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: var(--space-150);

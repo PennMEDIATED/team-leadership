@@ -21,10 +21,17 @@
     </div>
   </section>
 
+  <div class="scroll-hint-wrap">
+    <a href="#core-leadership-section" class="scroll-hint" aria-label="Scroll down to learn more">
+      <span class="scroll-hint__arrow" aria-hidden="true">&#8595;</span>
+    </a>
+  </div>
+
   <!-- ── Core Leadership & Team ───────────────────────────────────── -->
-  <section class="team-section team-section--gradient reveal reveal--toggle" aria-labelledby="leadership-heading">
+  <section id="core-leadership-section" class="team-section team-section--gradient reveal" aria-labelledby="leadership-heading">
     <div class="team-section__inner">
       <h2 id="leadership-heading" class="team-section__title">Core Leadership &amp; Team</h2>
+      <p class="team-section__lede">The faculty co-directors, executive leadership, and staff who run Penn MEDIATED day to day.</p>
       <div class="team-section__grid">
         <a class="person-card" href="https://duncanjwatts.com/" target="_blank" rel="noopener">
           <img src="Photos/Watts color.jpeg" alt="Duncan Watts" class="person-card__photo" style="object-position: top;">
@@ -59,9 +66,10 @@
   </section>
 
   <!-- ── Knight Fellows ───────────────────────────────────────────── -->
-  <section class="team-section reveal reveal--toggle" aria-labelledby="fellows-heading">
+  <section class="team-section reveal" aria-labelledby="fellows-heading">
     <div class="team-section__inner">
       <h2 id="fellows-heading" class="team-section__title">Knight Fellows</h2>
+      <p class="team-section__lede">Postdoctoral and PhD researchers supported by the John S. and James L. Knight Foundation.</p>
       <div class="team-section__grid">
         <a class="person-card" href="https://cyijing.com/" target="_blank" rel="noopener">
           <img src="Photos/chen color.jpeg" alt="Yijing Chen" class="person-card__photo">
@@ -118,9 +126,10 @@
   </section>
 
   <!-- ── Faculty Advisors ─────────────────────────────────────────── -->
-  <section class="team-section team-section--purple reveal reveal--toggle" aria-labelledby="advisors-heading">
+  <section class="team-section team-section--purple reveal" aria-labelledby="advisors-heading">
     <div class="team-section__inner">
       <h2 id="advisors-heading" class="team-section__title">Faculty Advisors</h2>
+      <p class="team-section__lede">Penn faculty across seven schools who guide the Center's research agenda.</p>
       <div class="team-section__grid">
         <a class="person-card" href="https://www.asc.upenn.edu/people/faculty/amy-gutmann-phd" target="_blank" rel="noopener">
           <img src="Photos/gutmann color.jpeg" alt="Amy Gutmann" class="person-card__photo" style="object-position: top;">
@@ -169,9 +178,10 @@
   </section>
 
   <!-- ── Part Time Staff ──────────────────────────────────────────── -->
-  <section class="team-section reveal reveal--toggle" aria-labelledby="parttime-heading">
+  <section class="team-section reveal" aria-labelledby="parttime-heading">
     <div class="team-section__inner">
       <h2 id="parttime-heading" class="team-section__title">Part Time Staff</h2>
+      <p class="team-section__lede">Student and part-time contributors supporting our research and operations.</p>
       <div class="team-section__grid">
         <div class="person-card">
           <img src="Photos/Herzog.jpeg" alt="Fiona Herzog" class="person-card__photo">
@@ -211,11 +221,14 @@
     // Same pattern as about/index.html.
     document.documentElement.classList.add('js-reveal-ready');
 
-    // One-shot fade-in for the hero: fades in the first time it scrolls
-    // into view and then stays visible. The four grid sections are marked
-    // .reveal--toggle instead (below), so they keep re-fading as you
-    // scroll past them in either direction — same split as about/index.html.
-    var oneShotEls = document.querySelectorAll('.reveal:not(.reveal--toggle)');
+    // One-shot fade-in for every .reveal element (hero + all four
+    // sections): each fades in the first time it scrolls into view and
+    // then stays visible, even scrolling back up past it. Unlike about's
+    // continuous toggle-in/toggle-out treatment, nothing re-fades once
+    // shown — calmer for a static roster page, and it sidesteps the
+    // scroll-jitter "spasming" bug that toggle-based reveals hit when a
+    // section sits at the very bottom of the page.
+    var revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
       var revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -225,35 +238,29 @@
           }
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-      oneShotEls.forEach(function (el) { revealObserver.observe(el); });
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
     } else {
-      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
     }
 
-    // .reveal--toggle sections (each team-section) keep toggling both ways
-    // — the section and its staggered person-card tiles fade back out when
-    // scrolled past going up, not just a one-time reveal.
-    //
-    // Hysteresis dead zone (add at >=0.15, remove at <=0.08) instead of a
-    // single threshold: at the very bottom of the page, overscroll/rubber-
-    // band bounce can jitter a section's intersection ratio back and forth
-    // across one exact threshold value a few times a second, re-triggering
-    // the 0.9s fade transition each time ("spasming"). A gap between the
-    // on/off points means a couple pixels of jitter can't cross both.
-    var toggleEls = document.querySelectorAll('.reveal--toggle');
-    if ('IntersectionObserver' in window) {
-      var toggleObserver = new IntersectionObserver(function (entries) {
+    // Scroll-hint arrow between the hero and the first section: fades out
+    // once that section comes into view, back in if scrolled above it
+    // again — same idea as about's Orbital-linked scroll hint. Hysteresis
+    // (hide at >=0.15, show again at <=0.08) instead of a single
+    // threshold, for the same anti-jitter reason as above.
+    var scrollHint = document.querySelector('.scroll-hint');
+    var firstSection = document.querySelector('.team-section');
+    if (scrollHint && firstSection && 'IntersectionObserver' in window) {
+      var hintObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.intersectionRatio >= 0.15) {
-            entry.target.classList.add('is-visible');
+            scrollHint.classList.add('scroll-hint--hidden');
           } else if (entry.intersectionRatio <= 0.08) {
-            entry.target.classList.remove('is-visible');
+            scrollHint.classList.remove('scroll-hint--hidden');
           }
         });
       }, { threshold: [0, 0.08, 0.15, 0.3, 0.5], rootMargin: '0px 0px -40px 0px' });
-      toggleEls.forEach(function (el) { toggleObserver.observe(el); });
-    } else {
-      toggleEls.forEach(function (el) { el.classList.add('is-visible'); });
+      hintObserver.observe(firstSection);
     }
   </script>
 
