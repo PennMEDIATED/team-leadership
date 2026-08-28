@@ -4,7 +4,7 @@ The team page for the [Center on Media, Technology and Democracy](https://infode
 
 - `index.html` — page markup
 - `styles.css` — all styling (design tokens live at the top in `:root`)
-- `Photos/` — headshots, one file per person
+- `assets/` — headshots, one file per person
 
 ## Deployment
 
@@ -25,7 +25,7 @@ This page does **not** include a `postMessage` iframe-communication script of an
 
 Each of the four sections (Core Team, Knight Fellows, Faculty Advisors, Part Time Staff) is a `.team-section` containing a `.team-section__grid` of `.person-card`s. To add someone:
 
-1. Upload their headshot to `Photos/`. Square-ish, reasonably tight crop on the face works best — the image is displayed as a 208px circle (`object-fit: cover`), so anything with the subject roughly centered will crop cleanly. If a photo's subject sits high or low in the frame, add an inline `style="object-position: top;"` (or a percentage value) on the `<img>`, following the pattern already used on several cards.
+1. Upload their headshot to `assets/`. Square-ish, reasonably tight crop on the face works best — the image is displayed as a 208px circle (`object-fit: cover`), so anything with the subject roughly centered will crop cleanly. If a photo's subject sits high or low in the frame, add an inline `style="object-position: top;"` (or a percentage value) on the `<img>`, following the pattern already used on several cards.
 2. Copy an existing `.person-card` block in the right section and update the photo `src`, `alt`, name, and role text.
 3. If they have a personal/lab website worth linking, make the card an `<a href="..." target="_blank" rel="noopener">` and include the `<span class="card-arrow" aria-hidden="true">↗</span>` — this is what shows the "opens an external site" badge on hover. If they don't have a link, use a plain `<div class="person-card">` instead (no `<a>`, no arrow badge) — see the Part Time Staff section for examples of both.
 4. For a former member who should stay listed but marked as alumni, add `person-card--alumni` to the card's class list and include `<span class="person-card__tag">Alumna</span>` (or `Alumnus`) as the first child inside the card.
