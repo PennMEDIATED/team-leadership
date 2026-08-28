@@ -86,13 +86,13 @@ a:hover .card-arrow {
    ============================================================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 /* overflow-anchor: none avoids a browser "scroll anchoring" bug where the
-   page silently scrolls itself down a bit after load — the eyebrow sits
-   right at the very top with only 20px of padding above it, and when the
-   web fonts swap in a beat after first paint, the hero title's height
+   page silently scrolls itself down a bit after load — the hero title
+   sits right at the very top with only 20px of padding above it, and when
+   the web fonts swap in a beat after first paint, the hero title's height
    shifts slightly; the browser's default scroll-anchoring then nudges the
-   viewport to compensate, which crops the eyebrow above it. Scrolling up
-   manually reveals it fine — this just stops the auto-scroll from
-   happening in the first place. */
+   viewport to compensate, which crops the title. Scrolling up manually
+   reveals it fine — this just stops the auto-scroll from happening in the
+   first place. */
 html { font-size: 16px; scroll-behavior: smooth; overflow-anchor: none; }
 body {
   font-family: var(--f-sans);
@@ -119,20 +119,6 @@ a:focus-visible {
   max-width: var(--max-w);
   margin-inline: auto;
   padding-inline: var(--pad-x);
-}
-
-/* =============================================================================
-   Eyebrow label — copied verbatim from about/styles.css. Used once, above
-   the page's H1, same as about uses it once above "Mission Statement."
-   ============================================================================= */
-.eyebrow {
-  font-family: var(--f-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-red);
-  margin-bottom: var(--space-150);
 }
 
 /* =============================================================================
@@ -189,8 +175,9 @@ a:focus-visible {
 
 /* =============================================================================
    HERO  ("Our Team")
-   Same shape as about's Mission Statement block: eyebrow, serif accent-
-   purple H1, sans lede paragraph filling the full padded width.
+   Same shape as about's Mission Statement block: serif accent-purple H1,
+   sans lede paragraph filling the full padded width. No eyebrow/kicker
+   above the title.
    ============================================================================= */
 .team-hero {
   padding-top: 20px;
