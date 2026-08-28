@@ -127,45 +127,6 @@ a:focus-visible {
 }
 
 /* =============================================================================
-   Scroll-hint arrow — copied from about/styles.css. Sits in the plain
-   white gap between the hero and the first colored section, inviting the
-   user to keep scrolling. Fades out once that section is in view, via
-   .scroll-hint--hidden (toggled by its own IntersectionObserver).
-   ============================================================================= */
-.scroll-hint-wrap {
-  display: flex;
-  justify-content: center;
-  padding-block: var(--space-300);
-  background: var(--c-white);
-}
-.scroll-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(13, 13, 12, 0.15);
-  color: var(--c-dark);
-  font-size: 16px;
-  animation: scroll-hint-bounce 2.2s ease-in-out infinite;
-  transition: border-color 0.15s, color 0.15s, opacity 0.4s ease;
-}
-.scroll-hint:hover {
-  border-color: var(--c-red);
-  color: var(--c-red);
-  animation-play-state: paused;
-}
-.scroll-hint--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-@keyframes scroll-hint-bounce {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(8px); }
-}
-
-/* =============================================================================
    Scroll-triggered reveal — same progressive-enhancement pattern as
    about/styles.css: the opacity/transform rule only applies once the page's
    own script confirms it can run (js-reveal-ready on <html>), so a page with
