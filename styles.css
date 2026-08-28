@@ -343,6 +343,24 @@ a:focus-visible {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Alumni status always reads as the style guide's --c-gray tile,
+   regardless of section — overrides both the default white tile and the
+   red-orange tile above. Dark text instead of white/gray-on-gray, since
+   --c-gray is a mid-tone that fails contrast with light text. */
+.person-card--alumni,
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card--alumni {
+  background: var(--c-gray);
+  border-color: transparent;
+}
+.person-card--alumni .person-card__name,
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card--alumni .person-card__name {
+  color: var(--c-dark);
+}
+.person-card--alumni .person-card__role,
+.team-section:not(.team-section--gradient):not(.team-section--purple) .person-card--alumni .person-card__role {
+  color: rgba(13, 13, 12, 0.65);
+}
+
 .person-card__photo {
   width: 208px;
   height: 208px;
