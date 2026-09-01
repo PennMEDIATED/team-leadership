@@ -1,20 +1,10 @@
 # Penn MEDIATED — Team & Leadership
 
-The team page for the [Center on Media, Technology and Democracy](https://infodem.upenn.edu) — leadership, staff, Knight Fellows, faculty advisors, and part-time staff. Static HTML/CSS, no build step. Deployed directly to https://mediated.upenn.edu/team/ — see "Deployment" below.
+The team page for the [Center on Media, Technology and Democracy](https://infodem.upenn.edu) — leadership, staff, Knight Fellows, faculty advisors, and part-time staff. Static HTML/CSS, no build step.
 
 - `index.html` — page markup
 - `styles.css` — all styling (design tokens live at the top in `:root`)
 - `assets/` — headshots, one file per person
-
-## Deployment
-
-This repo deploys straight to the live site — no GitHub Pages hosting step, no WordPress iframe embed.
-
-- A clone of this repo lives on the department's web server (eniac) at the path WordPress resolves `/team/` to (**note the folder is named `team`, not `team-leadership`, since the folder name has to match the URL slug — see `eniac-github-ssh-setup.md` for why**), on the new `mediated.upenn.edu` instance. The server's `.htaccess` defers to real files/directories on disk before handing a request to WordPress, so this repo's own files are what actually serve `https://mediated.upenn.edu/team/` — there's no WordPress Page involved at that URL.
-- A GitHub webhook fires on every push to `main`, hitting a WordPress REST endpoint (`/wp-json/mediated/v1/deploy`) that verifies the request's signature (HMAC-SHA256, shared secret) and runs `git pull` in this repo's directory on the server. Deploys land within seconds of pushing — no polling delay.
-- To undo a live mistake: `git revert` the bad commit and push it, same as any other change. **Don't** `git reset --hard` + force-push — the webhook always runs a normal `git pull`, and rewritten history will make that fail instead of quietly applying the fix.
-
-Full setup process (SSH access, deploy keys, the older cron-based pull) is documented in `eniac-github-ssh-setup.md` at the top level of the `Website` folder — note that guide hasn't been updated for the webhook approach yet, so treat it as a reference for SSH/key setup only, not the current deploy trigger mechanism.
 
 This repo's design system is copied from [`about`](https://github.com/PennMEDIATED/about) — see that repo's README for the canonical spacing/color/type tokens and component conventions. Don't redefine a token or component pattern here that already exists there; pull the value from `about` instead so the two pages don't drift apart. The one intentional difference: `about`'s `--pad-x` is currently fixed (not responsive), but this page's is responsive (32px under 900px, 20px under 480px) — a multi-column card grid needs it, and `about`'s own README flags this as something to backport when a page has content wider than a headline/paragraph.
 
