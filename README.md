@@ -48,6 +48,8 @@ The top five are `clamp()` values that interpolate across the viewport, so table
 
 **Heading gaps.** Section title to first content is `var(--space-300)` (24px); page or hero title to content is `var(--space-250)` (20px).
 
+**Section rhythm.** A full-width colored section carries `var(--space-1000)` (80px) top and bottom padding, so its heading never sits flush against the band's edge. The page hero's bottom padding is `var(--space-600)` (48px) — shorter than 80px because the section below supplies its own.
+
 ## Components
 
 - **Hero**: the serif, accent-purple `.team-hero__title` ("Leadership & Staff") and a plain sans lede paragraph (full padded width, no `max-width` of its own — per `about/README.md`'s "Heading and body-copy positioning" rule) — the same shape as `about`'s Mission Statement block. **No eyebrow/kicker label above the hero heading** — removed 2026-08-28 (previously `.eyebrow` "Our Team"); the sitewide convention now is hero/section headings stand alone with nothing above them.

@@ -199,7 +199,7 @@ a:focus-visible {
    ============================================================================= */
 .team-hero {
   padding-top: var(--space-250);
-  padding-bottom: var(--space-300);
+  padding-bottom: var(--space-600);
 }
 
 .team-hero__title {
@@ -270,11 +270,6 @@ a:focus-visible {
    top, same figure/ground logic as home's Research/Faculty CTA blocks. */
 .team-section--gradient {
   background: var(--c-gradient);
-  /* This is the section directly under the hero lede — tightened to
-     match the org-wide hero/subhead-to-content gap (24px total, split
-     as .team-hero's bottom padding), not the standard 80px section
-     break used between every other pair of sections on this page. */
-  padding-top: 0;
 }
 .team-section--gradient .team-section__title,
 .team-section--gradient .team-section__lede {
