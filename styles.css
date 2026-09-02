@@ -240,10 +240,12 @@ a:focus-visible {
    rather than home's smaller 24px "What's New" list-header size. No
    border-bottom, since about's own version of this heading doesn't have
    one; the heading-to-grid gap below is still the documented 48px. */
+/* Weight 700 on the white sections; the two colored variants below pull
+   it back to 600, per the sitewide white-vs-colored heading split. */
 .team-section__title {
   font-family: var(--f-sans);
   font-size: var(--fs-h2);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: var(--lh-heading);
   color: var(--c-red);
@@ -276,6 +278,8 @@ a:focus-visible {
   color: var(--c-white);
 }
 
+.team-section--gradient .team-section__title { font-weight: 600; }
+
 /* Faculty Advisors gets a solid brand-purple backdrop — same treatment as
    about's Partners section (background: var(--c-accent)), distinct from
    the two-tone --c-gradient used on Core Team so the two
@@ -287,6 +291,8 @@ a:focus-visible {
 .team-section--purple .team-section__lede {
   color: var(--c-white);
 }
+
+.team-section--purple .team-section__title { font-weight: 600; }
 
 /* Grid never just shrinks its columns as the viewport narrows — auto-fill +
    minmax reflows to fewer columns at natural breakpoints instead, same
