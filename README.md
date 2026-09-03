@@ -58,6 +58,21 @@ The top five are `clamp()` values that interpolate across the viewport, so table
 - **External-link arrow badge** (`.card-arrow`): copied verbatim from `about/styles.css` — same 26px circle, same sliding purple-to-orange gradient hover. Only appears on cards that are links.
 - **Scroll-triggered reveal**: single-tier, one-shot only — every `.reveal` element (hero + all four sections) fades in once and stays visible, unlike `about`'s continuous toggle-in/toggle-out treatment on its own colored sections. This was a deliberate departure: a toggling reveal on a section that ends up sitting at the very bottom of the page (no more room to scroll) is prone to a scroll-jitter "spasming" bug where overscroll bounce rapidly re-triggers the fade. One-shot avoids that entirely and reads calmer for a static roster page anyway.
 - No scroll-hint arrow (unlike `about`'s Orbital-linked one) — tried it, but with only one hero-to-first-section transition and no long marketing scroll, it didn't add anything, so it was removed.
+## Embedding this page
+
+WordPress renders the real site; this repo is the source. The launch plan is direct-to-disk deployment, which needs no iframe — but iframe embedding still works and is the documented fallback, so keep this snippet accurate if you rename the repo or change its Pages URL.
+
+Paste into a WordPress Code block (or Divi Code module) as one line:
+
+```html
+<iframe id="pm-team-leadership" src="https://pennmediated.github.io/team-leadership/" title="Leadership & Staff — Penn MEDIATED" loading="lazy" style="width:100%;height:6450px;border:0;display:block"></iframe><script>(function(){var f=document.getElementById('pm-team-leadership');window.addEventListener('message',function(e){if(e.source!==f.contentWindow)return;var d=e.data||{},h=d.frameHeight||(d.type==='partners-page-resize'?d.height:0);if(h)f.style.height=h+'px';});})();</script>
+```
+
+The `height` in the snippet is only the starting value. Every Penn MEDIATED page posts its real height to the parent as `{{ frameHeight: <int> }}` — on load, on resize, once webfonts settle, and on any `ResizeObserver` change, so reveal animations, expanding cards and `<details>` toggles all resize the frame. The listener in the snippet applies it. `grants-rfp` also emits an older `{{ type: 'partners-page-resize', height }}` message; the snippet accepts both.
+
+The page checks `window.self === window.top` before posting, so opening it directly does nothing. If you add a new page repo, copy the script from the bottom of this `index.html` so it behaves the same way.
+
+
 ## Images and video
 
 This applies to every image, GIF and video added to any Penn MEDIATED repo. It is written to be followed directly — by a person or by a Claude session — without further instruction.
