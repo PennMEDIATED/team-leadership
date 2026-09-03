@@ -58,7 +58,44 @@ The top five are `clamp()` values that interpolate across the viewport, so table
 - **External-link arrow badge** (`.card-arrow`): copied verbatim from `about/styles.css` — same 26px circle, same sliding purple-to-orange gradient hover. Only appears on cards that are links.
 - **Scroll-triggered reveal**: single-tier, one-shot only — every `.reveal` element (hero + all four sections) fades in once and stays visible, unlike `about`'s continuous toggle-in/toggle-out treatment on its own colored sections. This was a deliberate departure: a toggling reveal on a section that ends up sitting at the very bottom of the page (no more room to scroll) is prone to a scroll-jitter "spasming" bug where overscroll bounce rapidly re-triggers the fade. One-shot avoids that entirely and reads calmer for a static roster page anyway.
 - No scroll-hint arrow (unlike `about`'s Orbital-linked one) — tried it, but with only one hero-to-first-section transition and no long marketing scroll, it didn't add anything, so it was removed.
-- **Hyperlinks in body copy**: this page has no inline links inside flowing prose (every `<a>` here is a whole-card `.person-card` link) — nothing to change today. If body copy with an inline link is ever added, use the sitewide treatment: `color: var(--c-red)`, `font-weight: 500`, no underline, `opacity: 0.7` on hover, no color change — see `.event-card__caption a` (`events`), `.post-excerpt a` (`blog`), `.intro__body a` (`data`/`grants`), and the bio/card-desc rules in `our-team-faculty`.
+## Hyperlinks
+
+One taxonomy, five categories, shared by every page repo. Pick the category by what the link *is*, not by which repo you happen to be editing.
+
+**1. In-text links** — embedded mid-sentence in flowing prose.
+
+| ground | text | underline | hover |
+| --- | --- | --- | --- |
+| white / light | `--c-dark` | `border-bottom: 1px solid rgba(13, 13, 12, 0.35)` | text and underline both turn `--c-red` |
+| colour / gradient | `--c-white` | `border-bottom: 1px solid rgba(255, 255, 255, 0.5)` | fade to `opacity: 0.7` — no colour swap |
+
+The underline is a `border-bottom`, not `text-decoration`, so its colour can be transitioned independently of the text on hover. Pair it with `transition: color 0.15s, border-color 0.15s` on light grounds and `transition: opacity 0.15s` on coloured ones.
+
+White-to-anything reads poorly on a saturated ground, which is why the coloured case fades instead of changing hue.
+
+**2. Independent links** — a standalone text link that isn't inside a sentence ("Learn More About the Center", "Download the Full Schedule"). Same colours, decoration and hover as category 1, **plus a thin arrow** `⟶` after the text. Use `⟶` (`&#10230;`), not the `↗` badge from category 4.
+
+**3. Document buttons** — an independent link that opens a document (a PDF, a report). A filled button box, not text:
+
+| ground | box | text |
+| --- | --- | --- |
+| white / light | `--c-red` | `--c-white` |
+| colour / gradient | `--c-white` | `--c-dark` |
+
+Hover is **movement, not colour** — a lift or nudge. Do not darken or recolour the box.
+
+**4. Links to another web page** — this site or an external one. The containing box carries the shared `.card-arrow`: a 26px dark circle with a white `↗`, in the box's top corner. On hover the arrow scales slightly and its background becomes a sliding purple-to-orange gradient (`@keyframes card-arrow-slide`), and the box itself animates. No separate text button — the whole box is the link.
+
+**Exception:** a link to a research paper is category 2, not this — thin arrow, no badge.
+
+**5. Hyperlinked headings** — a heading that is itself a link (a post title, a card title). Colour shift on hover per the ground rules above, and **no arrow and no underline**.
+
+### Dropdowns and disclosures
+
+A dropdown, `<details>` block or expand/collapse control uses one affordance sitewide: a **chevron SVG** (`M2 5l5 5 5-5`, 13×13, `--c-red` stroke, `stroke-width: 1.8`) beside a `--c-red` label at `--fs-small`, rotating `180deg` on open with `transition: transform 0.25s`. See `llm-civic-discourse`'s "Full summary & details" toggle for the reference implementation.
+
+Never leave the marker to the browser — style `<select>` with `appearance: none` and supply the chevron, and hide the native `<summary>` marker. The `↗` circle badge is category 4's language and does not belong on a disclosure control.
+
 - **`overflow-anchor: none`** (on `html` and `body`): fixes a browser "scroll anchoring" bug where the page silently scrolled itself down past the hero title right after load. The hero title sits at the very top with only 20px of padding above it, and when the web fonts swap in a beat after first paint, its height shifts slightly; the browser's default scroll-anchoring then nudged the viewport to compensate, cropping the title. This turns that off. If this page's structure ever changes to be embedded inside another document (an iframe, or injected into a different site's DOM) rather than served as its own standalone page, revisit whether this still belongs on `html`/`body` or needs to move somewhere scoped to this page's own markup.
 
 ## Keeping in sync
