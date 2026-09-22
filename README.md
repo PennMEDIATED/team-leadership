@@ -1,6 +1,6 @@
 # Penn MEDIATED — Team & Leadership
 
-The team page for the [Center on Media, Technology and Democracy](https://infodem.upenn.edu) — leadership, staff, Knight Fellows, faculty advisors, and part-time staff. Static HTML/CSS, no build step.
+The team page for the [Center on Media, Technology and Democracy](https://mediated.upenn.edu) — leadership, staff, Knight Fellows, faculty advisors, and part-time staff. Static HTML/CSS, no build step.
 
 - `index.html` — page markup
 - `styles.css` — all styling (design tokens live at the top in `:root`)
