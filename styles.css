@@ -211,7 +211,9 @@ a:focus-visible {
    above the title.
    ============================================================================= */
 .team-hero {
-  padding-top: var(--space-250);
+  /* Top of page: 80px from the site menu to the page title, the same on
+     every page (--space-1000, the documented page-level rhythm). */
+  padding-top: var(--space-1000);
   padding-bottom: var(--space-600);
 }
 
